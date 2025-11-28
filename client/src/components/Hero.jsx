@@ -11,16 +11,16 @@ const Hero = () => {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      {/* Background Image */}
+  
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        {/* Overlay */}
+    
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
-      {/* Content */}
+    
       <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-4">
         <h1 className="mb-4 text-5xl font-bold md:text-7xl drop-shadow-lg">
           OasisStay Resort

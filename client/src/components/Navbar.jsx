@@ -37,7 +37,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Logo */}
+      
         <Link 
           to="/" 
           className={`text-2xl font-bold ${isScrolled ? 'text-primary' : 'text-white'}`}
@@ -46,7 +46,7 @@ const Navbar = () => {
           OasisStay
         </Link>
 
-        {/* Desktop Menu */}
+        
         <div className="hidden md:flex space-x-8">
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -74,7 +74,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
+        
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -107,7 +107,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      
       {isOpen && (
         <div className="md:hidden bg-white shadow-xl absolute top-full left-0 w-full py-4 px-4 flex flex-col space-y-4">
           <button 

@@ -11,8 +11,8 @@ const Gallery = () => {
     { src: gallery2, alt: 'Ocean View Suite' },
     { src: gallery3, alt: 'Fine Dining' },
     { src: gallery4, alt: 'Spa & Wellness' },
-    { src: gallery1, alt: 'Resort Exterior (Pool View)' }, // Reusing pool image
-    { src: gallery3, alt: 'Evening Ambience' }, // Reusing dining image
+    { src: gallery1, alt: 'Resort Exterior (Pool View)' }, 
+    { src: gallery3, alt: 'Evening Ambience' }, 
   ];
 
   return (

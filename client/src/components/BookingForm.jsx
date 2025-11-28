@@ -19,7 +19,7 @@ const BookingForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    // Clear error when user types
+
     if (errors[name]) {
       setErrors({ ...errors, [name]: '' });
     }
@@ -51,7 +51,6 @@ const BookingForm = () => {
     if (validate()) {
       console.log('Form Submitted:', formData);
       alert('Booking Request Sent! (Mock)');
-      // Reset form or redirect
       setFormData({
         fullName: '',
         email: '',
@@ -82,7 +81,6 @@ const BookingForm = () => {
 
           <form onSubmit={handleSubmit} className="p-8 md:p-12 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Full Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                 <div className="relative">
@@ -99,7 +97,6 @@ const BookingForm = () => {
                 {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>}
               </div>
 
-              {/* Email */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                 <div className="relative">
@@ -116,7 +113,6 @@ const BookingForm = () => {
                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
               </div>
 
-              {/* Phone */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
                 <div className="relative">
@@ -133,7 +129,6 @@ const BookingForm = () => {
                 {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
               </div>
 
-              {/* Guests */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Number of Guests</label>
                 <div className="relative">
@@ -149,7 +144,6 @@ const BookingForm = () => {
                 </div>
               </div>
 
-              {/* Accommodation Type */}
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Accommodation Type</label>
                 <div className="relative">
@@ -167,7 +161,6 @@ const BookingForm = () => {
                 </div>
               </div>
 
-              {/* Check-in Date */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Check-in Date</label>
                 <div className="relative">
@@ -183,7 +176,6 @@ const BookingForm = () => {
                 {errors.checkIn && <p className="text-red-500 text-xs mt-1">{errors.checkIn}</p>}
               </div>
 
-              {/* Check-out Date */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Check-out Date</label>
                 <div className="relative">
@@ -199,7 +191,6 @@ const BookingForm = () => {
                 {errors.checkOut && <p className="text-red-500 text-xs mt-1">{errors.checkOut}</p>}
               </div>
 
-              {/* Notes */}
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Special Requests</label>
                 <div className="relative">
