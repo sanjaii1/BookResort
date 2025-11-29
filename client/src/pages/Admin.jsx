@@ -1,29 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import useBookings from '../hooks/useBookings';
 
 const Admin = () => {
-  const [bookings, setBookings] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { bookings, loading, error, refetch } = useBookings();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    const fetchBookings = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/bookings');
-        setBookings(response.data);
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching bookings:', err);
-        setError('Failed to fetch bookings. Please ensure the backend is running.');
-        setLoading(false);
-      }
-    };
-
-    fetchBookings();
-  }, []);
 
   const filteredBookings = bookings.filter(booking => 
     booking.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||

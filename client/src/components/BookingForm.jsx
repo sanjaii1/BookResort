@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, User, Mail, Phone, Users, Home, FileText } from 'lucide-react';
+import useCreateBooking from '../hooks/useCreateBooking';
 
 const BookingForm = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ const BookingForm = () => {
     notes: '',
   });
 
+  const { createBooking, loading, error, success, resetStatus } = useCreateBooking();
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -46,21 +48,24 @@ const BookingForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log('Form Submitted:', formData);
-      alert('Booking Request Sent! (Mock)');
-      setFormData({
-        fullName: '',
-        email: '',
-        phone: '',
-        guests: 1,
-        accommodationType: 'Room',
-        checkIn: '',
-        checkOut: '',
-        notes: '',
-      });
+      const result = await createBooking(formData);
+      if (result) {
+        alert('Booking Request Sent Successfully!');
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          guests: 1,
+          accommodationType: 'Room',
+          checkIn: '',
+          checkOut: '',
+          notes: '',
+        });
+        resetStatus();
+      }
     }
   };
 
@@ -210,10 +215,12 @@ const BookingForm = () => {
             <div className="text-center mt-8">
               <button
                 type="submit"
-                className="w-full md:w-auto px-12 py-4 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-primary-dark transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                disabled={loading}
+                className={`w-full md:w-auto px-12 py-4 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-primary-dark transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
-                Confirm Booking
+                {loading ? 'Processing...' : 'Confirm Booking'}
               </button>
+              {error && <p className="text-red-500 mt-4">{error}</p>}
             </div>
           </form>
         </motion.div>
