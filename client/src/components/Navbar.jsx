@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,14 +35,14 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+        isScrolled || !isHomePage ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
       
         <Link 
           to="/" 
-          className={`text-2xl font-bold ${isScrolled ? 'text-primary' : 'text-white'}`}
+          className={`text-2xl font-bold ${isScrolled || !isHomePage ? 'text-primary' : 'text-white'}`}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           OasisStay
@@ -50,25 +52,25 @@ const Navbar = () => {
         <div className="hidden md:flex space-x-8">
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className={`font-medium hover:text-secondary transition-colors ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+            className={`font-medium hover:text-secondary transition-colors ${isScrolled || !isHomePage ? 'text-gray-800' : 'text-white'}`}
           >
             Home
           </button>
           <button 
             onClick={() => scrollToSection('services')}
-            className={`font-medium hover:text-secondary transition-colors ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+            className={`font-medium hover:text-secondary transition-colors ${isScrolled || !isHomePage ? 'text-gray-800' : 'text-white'}`}
           >
             Services
           </button>
           <button 
             onClick={() => scrollToSection('gallery')}
-            className={`font-medium hover:text-secondary transition-colors ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+            className={`font-medium hover:text-secondary transition-colors ${isScrolled || !isHomePage ? 'text-gray-800' : 'text-white'}`}
           >
             Gallery
           </button>
           <Link 
             to="/login"
-            className={`font-medium hover:text-secondary transition-colors flex items-center ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+            className={`font-medium hover:text-secondary transition-colors flex items-center ${isScrolled || !isHomePage ? 'text-gray-800' : 'text-white'}`}
           >
             Login
           </Link>
@@ -84,7 +86,7 @@ const Navbar = () => {
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
-            className={`focus:outline-none ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+            className={`focus:outline-none ${isScrolled || !isHomePage ? 'text-gray-800' : 'text-white'}`}
           >
             <svg
               className="w-8 h-8"
