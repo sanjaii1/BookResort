@@ -66,6 +66,12 @@ const Navbar = () => {
           >
             Gallery
           </button>
+          <Link 
+            to="/login"
+            className={`font-medium hover:text-secondary transition-colors flex items-center ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+          >
+            Login
+          </Link>
           <button 
             onClick={() => scrollToSection('booking-form')}
             className="px-5 py-2 bg-primary text-white rounded-full font-medium hover:bg-primary-dark transition-colors shadow-md"
@@ -131,6 +137,13 @@ const Navbar = () => {
           >
             Gallery
           </button>
+          <Link 
+            to="/login"
+            className="text-gray-800 font-medium hover:text-primary text-left"
+            onClick={() => setIsOpen(false)}
+          >
+            Login
+          </Link>
           <button 
             onClick={() => scrollToSection('booking-form')}
             className="px-5 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary-dark transition-colors text-center"
